@@ -1,0 +1,59 @@
+MDScreen:
+    MDBottomNavigation:
+        #panel_color: "#eeeaea"
+        #selected_color_background: "#97ecf8"
+        text_color_active: 0, 0, 0, 1
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Home'
+            icon: 'home'
+            badge_icon: "numeric-10"
+
+            HomeScreen:
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Discord'
+            icon: 'discord'
+            badge_icon: "numeric-5"
+            AddMessage:
+
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'LinkedIN'
+            icon: 'linkedin'
+
+            MDLabel:
+                text: 'LinkedIN'
+                halign: 'center'
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        MyRecycleView:
+
+<MyRecycleView>:
+    viewclass: 'MDLabel'
+    RecycleBoxLayout:
+        color: 1,1,1,1
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        hlign: "center"
+        orientation: 'vertical'
+
+<AddMessage>:
+    text_input: input
+    TextInput:
+        hint_text: "Name"
+        id: input
+        pos: root.center_x - 220, 300
+        size: 400,50
+    Button:
+        size: 130,40
+        pos: root.center_x - 100, 200
+        text: 'Submit'
+        on_release: root.submit_input()
