@@ -1,16 +1,29 @@
-from rest_framework import status
+from rest_framework import viewsets,generics,status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import viewsets
 
-from .serializer import ProfilSerializer, FriendSerializer, ChatMessageSerializer
-from .models import Profile, Friend, ChatMessage
+from .serializer import UserSerializer, FriendSerializer, ChatMessageSerializer
+from .models import User, Friend, ChatMessage
+
 
 
 # @api_view(['GET'])
-class ProfiletViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfilSerializer
+class ProfiletViewSet(viewsets.ModelViewSet):# generics.GenericAPIView
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
+    
+    def post(self,request):
+        data=request.data
+
+        serializer=self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(data=serializer.data,status=status.HTTP_201_CREATED)
+
+        return Response(data=serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
    
   

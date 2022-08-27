@@ -2,16 +2,11 @@ from unicodedata import name
 from rest_framework import serializers, status
 from rest_framework.validators import ValidationError
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from .models import *
 
 
-class UserSerializer(serializers.ModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Profile.objects.all())
 
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'profile']
 
 
 class MainRegisterSerializer(serializers.ModelSerializer):
@@ -19,20 +14,20 @@ class MainRegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'password')
 
-class ProfilSerializer(serializers.HyperlinkedModelSerializer):
-    user = MainRegisterSerializer()
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+
     
     class Meta:
-        model = Profile
-        fields = ('user' ,'name','pic') 
+        model = User
+        fields = ['username', 'email', 'password', 'pic']
     
     def validate(self,attrs):
-        email=Profile.objects.filter(username=attrs.get('username')).exists()
+        email=User.objects.filter(username=attrs.get('username')).exists()
 
         if email:
             raise ValidationError(detail="User with email exists",code=status.HTTP_403_FORBIDDEN)
 
-        username=Profile.objects.filter(username=attrs.get('username')).exists()
+        username=User.objects.filter(username=attrs.get('username')).exists()
 
         if username:
             raise ValidationError(detail="User with username exists",code=status.HTTP_403_FORBIDDEN)
@@ -44,7 +39,7 @@ class ProfilSerializer(serializers.HyperlinkedModelSerializer):
     #     return user
     
     def create(self,validated_data):
-        new_user=Profile(**validated_data)
+        new_user=User(**validated_data)
 
         new_user.password=make_password(validated_data.get('password'))
 
@@ -55,7 +50,7 @@ class ProfilSerializer(serializers.HyperlinkedModelSerializer):
 
         
 class FriendSerializer(serializers.HyperlinkedModelSerializer):
-    profile = ProfilSerializer()
+    user = UserSerializer()
     class Meta:
         model = Friend
         fields = '__all__'
