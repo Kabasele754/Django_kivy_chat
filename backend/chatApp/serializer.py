@@ -53,7 +53,17 @@ class FriendSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Friend
-        fields = ['user']
+        fields = '__all__'
+    
+    def create(self,validated_data):
+        new_friend=Friend(**validated_data)
+
+        new_friend.password=make_password(validated_data.get('password'))
+
+        new_friend.save()
+
+        return new_friend
+
     
         
         

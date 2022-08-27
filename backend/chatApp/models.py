@@ -17,7 +17,7 @@ class User(User):
     USERNAME_FIELD='email'
 
     def __str__(self):
-        return f"User {self.username}"
+        return f"User: {self.username}"
 
     
     
@@ -25,7 +25,7 @@ class Friend(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.profile.name
+        return f"Friend: { self.user.username }"
 
 class ChatMessage(models.Model):
     body = models.TextField()
