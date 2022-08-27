@@ -9,10 +9,10 @@ from .models import *
 
 
 
-class MainRegisterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
+# class MainRegisterSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('username', 'email', 'password')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -53,7 +53,7 @@ class FriendSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Friend
-        fields = '__all__'
+        fields = ['user']
     
         
         
