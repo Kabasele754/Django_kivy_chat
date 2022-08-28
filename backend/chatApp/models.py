@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+# Create your models here. for user chat 
 
 class User(User):
     #phone_number=PhoneNumberField(unique=True,null=False,blank=False)
