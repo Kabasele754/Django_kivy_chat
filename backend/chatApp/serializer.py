@@ -54,6 +54,7 @@ class FriendSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Friend
         fields = '__all__'
+        
     
     def create(self,validated_data):
         new_friend=Friend(**validated_data)

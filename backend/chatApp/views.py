@@ -27,7 +27,6 @@ class ProfiletViewSet(viewsets.ModelViewSet):# generics.GenericAPIView
     
    
   
-
 #@api_view(['POST'])
 class FriendViewSet(viewsets.ModelViewSet):
     queryset = Friend.objects.all()
