@@ -12,8 +12,13 @@ urlpatterns = [
     #path('', views.all_friend, name='all_friend'),
     #path('create', views.create_friend, name='create_friend')
     path('api/', include(router.urls)),
-    path('api_prifil', views.ProfileList.as_view()),
+    # partial of user url
+    path('api_user', views.ProfileList.as_view()),
+    path('api_user_detail/<int:pk>/', views.ProfileDetail.as_view()),
+    # partial of friend url
     path('api_friend', views.FriendList.as_view()),
+    path('api_friend_detail/<int:pk>/', views.FriendDetail.as_view()),
+    # partial of message url
     path('api_message_detail/<int:pk>/', views.MessageDetail.as_view()),
     path('api_chat_detail/<int:pk>/', views.ChatMessageDetail.as_view()),
 ]
