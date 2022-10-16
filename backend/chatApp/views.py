@@ -6,18 +6,18 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 
 from .serializer import ProfilSerializer, FriendSerializer, ChatMessageSerializer
-from .models import Profile, Friend, ChatMessage
+from .models import User, Friend, ChatMessage
 
 
 # @api_view(['GET'])
 class ProfiletViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
+    queryset = User.objects.all()
     serializer_class = ProfilSerializer
     
 class ProfileList(mixins.ListModelMixin,
                       mixins.CreateModelMixin,
                       generics.GenericAPIView):
-    queryset = Profile.objects.all()
+    queryset = User.objects.all()
     serializer_class = ProfilSerializer
   
     def get(self, request, *args, **kwargs):
@@ -30,7 +30,7 @@ class ProfileDetail(mixins.RetrieveModelMixin,
                         mixins.UpdateModelMixin,
                         mixins.DestroyModelMixin,
                         generics.GenericAPIView):
-    queryset = Profile.objects.all()
+    queryset = User.objects.all()
     serializer_class = ProfilSerializer
   
     def get(self, request, *args, **kwargs):
@@ -70,7 +70,7 @@ class ProfileDetail(mixins.RetrieveModelMixin,
                         mixins.UpdateModelMixin,
                         mixins.DestroyModelMixin,
                         generics.GenericAPIView):
-    queryset = Profile.objects.all()
+    queryset = User.objects.all()
     serializer_class = ProfilSerializer
   
     def get(self, request, *args, **kwargs):

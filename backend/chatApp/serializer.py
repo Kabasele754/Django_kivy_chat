@@ -21,15 +21,15 @@ class ProfilSerializer(serializers.ModelSerializer):
     #user = MainRegisterSerializer()
     
     class Meta:
-        model = Profile
-        fields = '__all__' 
+        model = User
+        fields = ('username','phone_number','email', 'date_of_birth', 'password','friends') 
         
         
 class FriendSerializer(serializers.ModelSerializer):
-    #profile = ProfilSerializer()
+    #user = ProfilSerializer()
     class Meta:
         model = Friend
-        fields = '__all__'
+        fields = ('username','phone_number','email', 'date_of_birth', 'password','friends') 
     
         
         
