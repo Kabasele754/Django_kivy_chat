@@ -15,6 +15,7 @@ urlpatterns = [
     path('api_prifil', views.ProfileList.as_view()),
     path('api_friend', views.FriendList.as_view()),
     path('api_message_detail/<int:pk>/', views.MessageDetail.as_view()),
+    path('api_chat_detail/<int:pk>/', views.ChatMessageDetail.as_view()),
 ]
 
 #urlpatterns = format_suffix_patterns(urlpatterns)

@@ -104,5 +104,9 @@ class MessageDetail(mixins.RetrieveModelMixin,
         return self.update(request, *args, **kwargs)
   
     def patch(self, request, *args, **kwargs):
-        return self.partial_update(request, *args, **kwargs)  
+        return self.partial_update(request, *args, **kwargs)
+    
+class ChatMessageDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ChatMessage.objects.all()
+    serializer_class = ChatMessageSerializer
   
