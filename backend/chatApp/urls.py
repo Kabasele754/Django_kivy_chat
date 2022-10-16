@@ -11,7 +11,7 @@ router.register(r'message', views.ChatMessageViewSet)
 urlpatterns = [
     #path('', views.all_friend, name='all_friend'),
     #path('create', views.create_friend, name='create_friend')
-    #path('api/', include(router.urls)),
+    path('api/', include(router.urls)),
     # partial of user url
     path('api_user', views.ProfileList.as_view()),
     path('api_user_detail/<int:pk>/', views.ProfileDetail.as_view()),
@@ -23,4 +23,4 @@ urlpatterns = [
     path('api_chat_detail/<int:pk>/', views.ChatMessageDetail.as_view()),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+#urlpatterns = format_suffix_patterns(urlpatterns)

@@ -48,21 +48,21 @@ class ProfilSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('id','username','phone_number','email', 'date_of_birth', 'password','friends') 
+        fields = ('username','phone_number','email', 'date_of_birth', 'password','friends') 
         
         
 class FriendSerializer(serializers.ModelSerializer):
-    user = ProfilSerializer()
+    #user = ProfilSerializer()
     class Meta:
         model = Friend
-        fields = '__all__'
+        fields = ('username','phone_number','email', 'date_of_birth', 'password','friends')
         
-    def create(self, validated_data):
-        type_data = validated_data.pop('user')
-        friend = Friend.objects.create(**validated_data)
-        for t_data in type_data:
-            User.objects.create(friend=friend, **t_data)
-        return friend
+    # def create(self, validated_data):
+    #     type_data = validated_data.pop('user')
+    #     friend = Friend.objects.create(**validated_data)
+    #     for t_data in type_data:
+    #         User.objects.create(friend=friend, **t_data)
+    #     return friend
         
     # def create(self, validated_data):
     #     request = self.context['request']
