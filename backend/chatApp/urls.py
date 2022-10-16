@@ -1,5 +1,5 @@
 from django.urls import path, re_path, include
-#from django.conf.urls import patterns, include, url
+#from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework import routers
 from . import views
 
@@ -14,4 +14,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api_prifil', views.ProfileList.as_view()),
     path('api_friend', views.FriendList.as_view()),
+    path('api_message_detail/<int:pk>/', views.MessageDetail.as_view()),
 ]
+
+#urlpatterns = format_suffix_patterns(urlpatterns)

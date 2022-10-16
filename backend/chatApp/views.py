@@ -66,12 +66,12 @@ class FriendList(mixins.ListModelMixin,
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
 
-class ProfileDetail(mixins.RetrieveModelMixin,
+class FriendDetail(mixins.RetrieveModelMixin,
                         mixins.UpdateModelMixin,
                         mixins.DestroyModelMixin,
                         generics.GenericAPIView):
-    queryset = User.objects.all()
-    serializer_class = ProfilSerializer
+    queryset = Friend.objects.all()
+    serializer_class = FriendSerializer
   
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -88,3 +88,21 @@ class ProfileDetail(mixins.RetrieveModelMixin,
 class ChatMessageViewSet(viewsets.ModelViewSet):
     queryset = ChatMessage.objects.all()
     serializer_class = ChatMessageSerializer
+    
+
+class MessageDetail(mixins.RetrieveModelMixin,
+                        mixins.UpdateModelMixin,
+                        mixins.DestroyModelMixin,
+                        generics.GenericAPIView):
+    queryset = ChatMessage.objects.all()
+    serializer_class = ChatMessageSerializer
+  
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+  
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+  
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)  
+  
