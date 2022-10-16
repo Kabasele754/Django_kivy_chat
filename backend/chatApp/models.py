@@ -117,7 +117,8 @@ class Friend(User):
 
     # def __str__(self):
     #     return self.lastname
-    pass
+    def __str__(self):
+        return self.email
 
     
 # class GestionFrientPrifile(models.Model):
